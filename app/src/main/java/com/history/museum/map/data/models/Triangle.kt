@@ -2,8 +2,8 @@ package com.history.museum.map.data.models
 
 import kotlin.math.abs
 
-class Triangle(val a: Point, val b: Point, val c: Point) {
-
+data class Triangle(val a: Point, val b: Point, val c: Point) {
+    @Suppress("MemberVisibilityCanBePrivate")
     fun area(): Double {
         val v1 = b - a
         val v2 = c - a
