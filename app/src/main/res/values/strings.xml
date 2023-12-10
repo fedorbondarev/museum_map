@@ -1,3 +1,37 @@
 <resources>
     <string name="app_name">museum_map</string>
+    <string name="start_header">Карта музея блокады ленинграда</string>
+    <string name="start_to_map_button">Карта</string>
+    <string name="start_to_museum_info_button">О музее</string>
+    <string name="start_to_app_info_button">О приложении</string>
+    <string name="start_to_contact_info_button">Контактная информация</string>
+    <string name="museum_info_header">О музее</string>
+    <string name="museum_info">
+        Основан в #### году и тд. \n
+        Послушайте! \n
+        Ведь, если звезды зажигают — \n
+        значит — это кому-нибудь нужно? \n
+        Значит — кто-то хочет, чтобы они были? \n
+        Значит — кто-то называет эти плево́чки жемчужиной? \n
+    </string>
+    <string name="contact_info_header">Контактная информация</string>
+    <string name="contact_info">
+        Основан в #### году и тд. \n
+        Послушайте! \n
+        Ведь, если звезды зажигают — \n
+        значит — это кому-нибудь нужно? \n
+        Значит — кто-то хочет, чтобы они были? \n
+        Значит — кто-то называет эти плево́чки жемчужиной? \n
+        \n
+        Вообще на картинке должна быть карта, но пока там будет котик
+    </string>
+    <string name="app_info_header">О приложении</string>
+    <string name="app_info">
+        Сделано при поддержке моего отсутствуещего чувства стиля \n
+        Послушайте! \n
+        Ведь, если звезды зажигают — \n
+        значит — это кому-нибудь нужно? \n
+        Значит — кто-то хочет, чтобы они были? \n
+        Значит — кто-то называет эти плево́чки жемчужиной? \n
+    </string>
 </resources>
