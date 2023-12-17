@@ -45,6 +45,7 @@ dependencies {
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.5")
+    implementation("com.davemorrissey.labs:subsampling-scale-image-view:3.10.0")
 }
 
 kapt {
