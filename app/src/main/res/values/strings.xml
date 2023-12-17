@@ -34,4 +34,7 @@
         Значит — кто-то хочет, чтобы они были? \n
         Значит — кто-то называет эти плево́чки жемчужиной? \n
     </string>
+    <string name="back_button">back button</string>
+    <string name="_2">2</string>
+    <string name="_1">1</string>
 </resources>
