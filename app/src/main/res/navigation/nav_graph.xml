@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/startFragment">
+
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.history.museum.map.fragments.StartFragment"
+        android:label="StartFragment" >
+        <action
+            android:id="@+id/action_startFragment_to_appInfoFragment"
+            app:destination="@id/appInfoFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_contactInfoFragment"
+            app:destination="@id/contactInfoFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_museumInfoFragment"
+            app:destination="@id/museumInfoFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/appInfoFragment"
+        android:name="com.history.museum.map.fragments.AppInfoFragment"
+        android:label="AppInfoFragment" />
+    <fragment
+        android:id="@+id/contactInfoFragment"
+        android:name="com.history.museum.map.fragments.ContactInfoFragment"
+        android:label="ContactInfoFragment" />
+    <fragment
+        android:id="@+id/museumInfoFragment"
+        android:name="com.history.museum.map.fragments.MuseumInfoFragment"
+        android:label="MuseumInfoFragment" />
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.history.museum.map.fragments.MapFragment"
+        android:label="MapFragment" />
+</navigation>

@@ -13,7 +13,7 @@ class DataBase {
         )
 
         val ARTIFACT_ENTITIES = mutableListOf(
-            ArtifactEntity(0, "Экспонат 1", "/assets/art1.html", listOf())
+            ArtifactEntity(0, "Экспонат 1", 1, "/assets/art1.html", listOf())
         )
     }
 }
