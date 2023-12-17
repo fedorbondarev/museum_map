@@ -13,6 +13,7 @@
         android:contentDescription="@string/back_button"
         app:fabSize="auto"
         app:srcCompat="@drawable/left_arrow"
+        android:id="@+id/back_button"
         android:backgroundTint="@color/white"
         app:borderWidth="0dp"/>
 

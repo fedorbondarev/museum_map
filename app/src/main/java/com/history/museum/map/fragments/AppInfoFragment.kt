@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.findFragment
 import com.history.museum.map.R
 
 class AppInfoFragment : Fragment(R.layout.app_info_fragment) {
@@ -17,5 +16,4 @@ class AppInfoFragment : Fragment(R.layout.app_info_fragment) {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
     }
-
 }
