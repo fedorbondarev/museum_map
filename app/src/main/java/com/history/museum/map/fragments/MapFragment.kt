@@ -117,9 +117,11 @@ class MapFragment : Fragment(R.layout.map_fragment) {
 
             2 -> {
                 bmpResourceId = R.raw.second_floor
-                imageView.orientation = SubsamplingScaleImageView.ORIENTATION_0
+                // Изначально изображение горизонтальное
+                imageView.orientation = SubsamplingScaleImageView.ORIENTATION_90
             }
 
+            // а хорошо ли эксепшн кидать?
             else -> throw IllegalArgumentException()
         }
 
