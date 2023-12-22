@@ -36,9 +36,5 @@
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.history.museum.map.fragments.MapFragment"
-        android:label="MapFragment" >
-    <action
-        android:id="@+id/action_mapFragment_to_startFragment"
-        app:destination="@id/startFragment" />
-    </fragment>
+        android:label="MapFragment" />
 </navigation>

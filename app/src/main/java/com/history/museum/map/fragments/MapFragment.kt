@@ -9,44 +9,59 @@ import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.davemorrissey.labs.subscaleview.ImageSource
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import com.history.museum.map.R
-import com.history.museum.map.data.RepositoryImpl
+import com.history.museum.map.data.Repository
 import com.history.museum.map.data.models.Point
+import com.history.museum.map.data.models.entities.ArtifactEntity
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
-class MapFragment : Fragment(R.layout.map_layout) {
-    var current_floor = 1
-    var repo = RepositoryImpl()
+@AndroidEntryPoint
+class MapFragment : Fragment(R.layout.map_fragment) {
+    @Inject
+    lateinit var repository: Repository
+
+    var currentFloor = 1
+
+    private lateinit var imageView: SubsamplingScaleImageView
+
+    private fun onArtifactTap(artifact: ArtifactEntity) {
+        Toast.makeText(
+            this@MapFragment.requireContext(),
+            artifact.name,
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
     @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val imageView: SubsamplingScaleImageView = view.findViewById(R.id.imageView)
-        val button1: Button = view.findViewById(R.id.button)
-        val button2: Button = view.findViewById(R.id.button2)
-        val toStartButton: Button = view.findViewById(R.id.button_from_map_to_start)
+        imageView = view.findViewById(R.id.imageView)
+        val button1: Button = view.findViewById(R.id.floor_button_1)
+        val button2: Button = view.findViewById(R.id.floor_button_2)
+        val backButton: Button = view.findViewById(R.id.button_from_map_to_start)
 
-        toStartButton.setOnClickListener {
-            findNavController().navigate(R.id.action_mapFragment_to_startFragment)
+        backButton.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
         }
 
-        CreateMap(current_floor, imageView)
+        createMap(currentFloor)
 
         button1.setOnClickListener {
-            changeFloor(1, imageView)
+            changeFloor(1)
         }
 
         button2.setOnClickListener {
-            changeFloor(2, imageView)
+            changeFloor(2)
         }
 
-
-        val gestureDetector = GestureDetector(
-            this@MapFragment.requireContext(),
+        val tapListener =
             object : GestureDetector.SimpleOnGestureListener() {
                 override fun onSingleTapConfirmed(e: MotionEvent): Boolean {
                     if (imageView.isReady) {
@@ -58,50 +73,54 @@ class MapFragment : Fragment(R.layout.map_layout) {
 
                             // m*n !
                             // maybe repo.GetFirstFloorArtifacts() / repo.GetSecondFloorArtifacts()
-                            for (artifact in repo.getAllArtifacts()) {
-                                if (artifact.floor.toInt() == current_floor) {
-                                    for (triangle in artifact.triangles) {
-                                        if (triangle.isInside(point)) {
-                                            // Diplay Info
-                                        }
+                            for (artifact in repository.getAllArtifacts()) {
+                                if (artifact.floor.toInt() != currentFloor) {
+                                    continue
+                                }
+
+                                for (triangle in artifact.triangles) {
+                                    if (triangle.isInside(point)) {
+                                        onArtifactTap(artifact)
                                     }
                                 }
                             }
-
-                            // Testing feature: display coordinates of tap
-                            // Toast.makeText(this@MapFragment.requireContext(), "X: $x, Y: $y", Toast.LENGTH_SHORT).show()
                         }
                     }
-                    return true
-                }
-            }
-        )
 
-        val scaleGestureDetector = ScaleGestureDetector(
-            this@MapFragment.requireContext(),
-            object : ScaleGestureDetector.SimpleOnScaleGestureListener() {
-                override fun onScale(detector: ScaleGestureDetector): Boolean {
-                    // Обработка масштабирования, иначе не работает зум)
                     return true
                 }
             }
+
+
+        val tapDetector = GestureDetector(this@MapFragment.requireContext(), tapListener)
+
+        val scaleDetector = ScaleGestureDetector(
+            this@MapFragment.requireContext(),
+            ScaleGestureDetector.SimpleOnScaleGestureListener()
         )
 
         imageView.setOnTouchListener { _, event ->
-            val result = scaleGestureDetector.onTouchEvent(event)
-            val singleTap = gestureDetector.onTouchEvent(event)
-
+            val result = scaleDetector.onTouchEvent(event)
+            val singleTap = tapDetector.onTouchEvent(event)
             !result && singleTap
         }
     }
 
-    fun CreateMap(floor: Int, imageView: SubsamplingScaleImageView) {
-        var bmpResourceId = R.raw.first_floor
-        imageView.orientation = SubsamplingScaleImageView.ORIENTATION_0
+    private fun createMap(floor: Int) {
+        val bmpResourceId: Int
 
-        if (floor == 2) {
-            bmpResourceId = R.raw.second_floor
-            imageView.orientation = SubsamplingScaleImageView.ORIENTATION_90
+        when (floor) {
+            1 -> {
+                bmpResourceId = R.raw.first_floor
+                imageView.orientation = SubsamplingScaleImageView.ORIENTATION_0
+            }
+
+            2 -> {
+                bmpResourceId = R.raw.second_floor
+                imageView.orientation = SubsamplingScaleImageView.ORIENTATION_0
+            }
+
+            else -> throw IllegalArgumentException()
         }
 
         val bmpInputStream = resources.openRawResource(bmpResourceId)
@@ -109,10 +128,10 @@ class MapFragment : Fragment(R.layout.map_layout) {
         imageView.setImage(ImageSource.bitmap(bmpBitmap))
     }
 
-    private fun changeFloor(newFloor: Int, imageView: SubsamplingScaleImageView) {
-        if (newFloor != current_floor) {
-            current_floor = newFloor
-            CreateMap(current_floor, imageView)
+    private fun changeFloor(newFloor: Int) {
+        if (newFloor != currentFloor) {
+            currentFloor = newFloor
+            createMap(currentFloor)
         }
     }
 }
