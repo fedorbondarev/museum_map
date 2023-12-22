@@ -127,6 +127,8 @@ class MapFragment : Fragment(R.layout.map_fragment) {
 
         val bmpInputStream = resources.openRawResource(bmpResourceId)
         val bmpBitmap: Bitmap = BitmapFactory.decodeStream(bmpInputStream)
+        imageView.minScale = 1.6f
+        imageView.setDoubleTapZoomScale(1.3f)
         imageView.setImage(ImageSource.bitmap(bmpBitmap))
     }
 
