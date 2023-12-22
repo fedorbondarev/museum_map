@@ -1,8 +1,11 @@
 package com.history.museum.map.data.models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import kotlin.math.abs
 
-data class Triangle(val a: Point, val b: Point, val c: Point) {
+@Parcelize
+data class Triangle(val a: Point, val b: Point, val c: Point) : Parcelable {
     @Suppress("MemberVisibilityCanBePrivate")
     fun area(): Double {
         val v1 = b - a

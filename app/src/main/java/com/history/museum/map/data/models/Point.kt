@@ -1,6 +1,10 @@
 package com.history.museum.map.data.models
 
-class Point(val x: Double, val y: Double) {
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class Point(val x: Double, val y: Double) : Parcelable {
     operator fun minus(other: Point): Point {
         return Point(x - other.x, y - other.y)
     }
