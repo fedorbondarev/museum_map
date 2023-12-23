@@ -9,8 +9,8 @@ import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.davemorrissey.labs.subscaleview.ImageSource
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import com.history.museum.map.R
@@ -31,11 +31,8 @@ class MapFragment : Fragment(R.layout.map_fragment) {
     private lateinit var imageView: SubsamplingScaleImageView
 
     private fun onArtifactTap(artifact: ArtifactEntity) {
-        Toast.makeText(
-            this@MapFragment.requireContext(),
-            artifact.name,
-            Toast.LENGTH_SHORT
-        ).show()
+        val action = MapFragmentDirections.actionMapFragmentToArtifactInfoFragment(artifact)
+        findNavController().navigate(action)
     }
 
     @SuppressLint("ClickableViewAccessibility")

@@ -36,5 +36,17 @@
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.history.museum.map.fragments.MapFragment"
-        android:label="MapFragment" />
+        android:label="MapFragment" >
+        <action
+            android:id="@+id/action_mapFragment_to_artifactInfoFragment"
+            app:destination="@id/artifactInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/artifactInfoFragment"
+        android:name="com.history.museum.map.fragments.ArtifactInfoFragment"
+        android:label="ArtifactInfoFragment" >
+        <argument
+            android:name="artifact"
+            app:argType="com.history.museum.map.data.models.entities.ArtifactEntity" />
+    </fragment>
 </navigation>
