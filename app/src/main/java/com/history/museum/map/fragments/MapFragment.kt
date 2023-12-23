@@ -15,6 +15,7 @@ import com.davemorrissey.labs.subscaleview.ImageSource
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import com.history.museum.map.R
 import com.history.museum.map.data.Repository
+import com.history.museum.map.data.getFloorArtifacts
 import com.history.museum.map.data.models.Point
 import com.history.museum.map.data.models.entities.ArtifactEntity
 import dagger.hilt.android.AndroidEntryPoint
@@ -67,14 +68,7 @@ class MapFragment : Fragment(R.layout.map_fragment) {
 
                         if (x != null && y != null) {
                             val point = Point(x.toDouble(), y.toDouble())
-
-                            // m*n !
-                            // maybe repo.GetFirstFloorArtifacts() / repo.GetSecondFloorArtifacts()
-                            for (artifact in repository.getAllArtifacts()) {
-                                if (artifact.floor.toInt() != currentFloor) {
-                                    continue
-                                }
-
+                            for (artifact in repository.getFloorArtifacts(currentFloor)) {
                                 for (triangle in artifact.triangles) {
                                     if (triangle.isInside(point)) {
                                         onArtifactTap(artifact)
@@ -118,7 +112,6 @@ class MapFragment : Fragment(R.layout.map_fragment) {
                 imageView.orientation = SubsamplingScaleImageView.ORIENTATION_90
             }
 
-            // а хорошо ли эксепшн кидать?
             else -> throw IllegalArgumentException()
         }
 

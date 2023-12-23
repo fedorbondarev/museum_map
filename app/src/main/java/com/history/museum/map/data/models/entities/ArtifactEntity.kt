@@ -8,7 +8,7 @@ import kotlinx.parcelize.Parcelize
 data class ArtifactEntity(
     val id: Long,
     val name: String,
-    val floor: Long,
+    val floor: Int,
     val html: String,
     val triangles: List<Triangle>
 ) : Parcelable

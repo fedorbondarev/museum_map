@@ -9,3 +9,5 @@ interface Repository {
     fun getInfoEntity(info: Info): InfoEntity
     fun getAllArtifacts(): List<ArtifactEntity>
 }
+
+fun Repository.getFloorArtifacts(floor: Int) = getAllArtifacts().filter { it.floor == floor }
