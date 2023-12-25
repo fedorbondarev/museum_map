@@ -9,12 +9,14 @@ import kotlin.math.cos
 import kotlin.math.sin
 
 
-fun createTrianglesForRect(x: Double, y: Double, w: Double, h: Double): List<Triangle> {
+fun rectTriangles(x: Double, y: Double, w: Double, h: Double): List<Triangle> {
     return listOf(
         Triangle(Point(x, y), Point(x + w, y), Point(x + w, y + h)),
         Triangle(Point(x, y), Point(x, y + h), Point(x + w, y + h))
     )
 }
+
+
 
 fun circleTriangles(n: Int, radius: Double, center: Point): List<Triangle> {
     val angle = 2 * PI / n
@@ -57,7 +59,7 @@ class DataBase {
                     </body>
                     </html>
                 """.trimIndent(),
-                createTrianglesForRect(881.0, 1599.0, 884.0, 717.0)
+                rectTriangles(881.0, 1599.0, 884.0, 717.0)
             ),
             ArtifactEntity(
                 2,
@@ -71,7 +73,7 @@ class DataBase {
                     </body>
                     </html>
                 """.trimIndent(),
-                createTrianglesForRect(859.0, 519.0, 890.0, 855.0)
+                rectTriangles(859.0, 519.0, 890.0, 855.0)
             ),
             ArtifactEntity(
                 3,
@@ -85,7 +87,7 @@ class DataBase {
                     </body>
                     </html>
                 """.trimIndent(),
-                createTrianglesForRect(1806.0, 412.0, 400.0, 255.0)
+                rectTriangles(1806.0, 412.0, 400.0, 255.0)
             ),
             ArtifactEntity(
                 4,
@@ -99,7 +101,7 @@ class DataBase {
                     </body>
                     </html>
                 """.trimIndent(),
-                createTrianglesForRect(280.0, 226.0, 55.0, 258.0)
+                rectTriangles(1942.0, 979.0, 275.0, 1413.0)
             ),
             ArtifactEntity(
                 5,
@@ -113,7 +115,7 @@ class DataBase {
                     </body>
                     </html>
                 """.trimIndent(),
-                createTrianglesForRect(137.0, 524.0, 85.0, 85.0)
+                rectTriangles(1054.0, 3232.0, 416.0, 432.0)
             ),
             ArtifactEntity(
                 6,
@@ -128,7 +130,7 @@ class DataBase {
                     </body>
                     </html>
                 """.trimIndent(),
-                createTrianglesForRect(12.0, 449.0, 120.0, 234.0)
+                rectTriangles(342.0, 2800.0, 672.0, 1282.0)
             ),
             ArtifactEntity(
                 7,
@@ -142,7 +144,7 @@ class DataBase {
                     </body>
                     </html>
                 """.trimIndent(),
-                createTrianglesForRect(342.0, 414.0, 279.0, 1767.0)
+                rectTriangles(342.0, 414.0, 279.0, 1767.0)
             ),
             ArtifactEntity(
                 8,
@@ -156,7 +158,7 @@ class DataBase {
                     </body>
                     </html>
                 """.trimIndent(),
-                createTrianglesForRect(642.0, 414.0, 528.0, 270.0)
+                rectTriangles(642.0, 414.0, 528.0, 270.0)
             ),
             ArtifactEntity(
                 9,
@@ -170,7 +172,7 @@ class DataBase {
                     </body>
                     </html>
                 """.trimIndent(),
-                createTrianglesForRect(1182.0, 414.0, 279.0, 1767.0)
+                rectTriangles(1182.0, 414.0, 279.0, 1767.0)
             ),
             ArtifactEntity(
                 10,
@@ -184,8 +186,8 @@ class DataBase {
                     </body>
                     </html>
                 """.trimIndent(),
-                createTrianglesForRect(830.0, 700.0, 160.0, 261.0) +
-                        createTrianglesForRect(771.0, 956.0, 270.0, 150.0)
+                rectTriangles(830.0, 700.0, 160.0, 261.0) +
+                        rectTriangles(771.0, 956.0, 270.0, 150.0)
             ),
             ArtifactEntity(
                 11,
@@ -213,7 +215,7 @@ class DataBase {
                     </body>
                     </html>
                 """.trimIndent(),
-                createTrianglesForRect(1051.0, 2796.0, 409.0, 181.0)
+                rectTriangles(1051.0, 2796.0, 409.0, 181.0)
             )
         )
     }
